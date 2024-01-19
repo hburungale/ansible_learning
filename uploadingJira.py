@@ -2,9 +2,9 @@ import requests
 
 def upload_attachment():
     url = "https://jira.mdsol.com/rest/api/2/issue/IH-454862/attachments"
-    username = ""
-    password = ""
-    file_path = "/reports"
+    username = "sdteam07devops"
+    password = "\$4FQ89NXts\$IgJ9O"
+    file_path = "../reports/IR_automation.txt"
     
     # Prepare the authentication credentials
     auth = (username, password)
