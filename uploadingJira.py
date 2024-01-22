@@ -6,6 +6,8 @@ def upload_attachment():
     username = "dt"
     password = "\$4FQ"
     script_directory = os.path.dirname(os.path.abspath(__file__))
+    secret_key = os.environ.get('Key1')
+    print(secret_key)
     
     # Construct the correct file path
     file_path = os.path.join(script_directory, "../reports/IR_automation.py")
