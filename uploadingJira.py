@@ -3,8 +3,8 @@ import os
 
 def upload_attachment():
     url = "https://jira.mdsol.com/rest/api/2/issue/IH-454862/attachments"
-    username = "dt"
-    password = "\$4FQ"
+    username = os.environ.get('Key1')
+    password = os.environ.get('Key2')
     script_directory = os.path.dirname(os.path.abspath(__file__))
     secret_key = os.environ.get('Key1')
     print(secret_key)
