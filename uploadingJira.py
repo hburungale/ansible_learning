@@ -2,7 +2,7 @@ import requests
 import os
 
 def upload_attachment():
-    url = "https://jira.mdsol.com/rest/api/2/issue/IH-518298/attachments"
+    url = "https://jira.mdsol.com/rest/api/2/issue/IH-454862/attachments"
     username = os.environ.get('Key1')
     password = os.environ.get('Key2')
     script_directory = os.path.dirname(os.path.abspath(__file__))
