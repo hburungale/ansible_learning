@@ -23,13 +23,13 @@ def replace_and_print_word_file_content(file_path, replacements):
                 print(cell.text)
 
     # Save the updated Word document
-    output_path = "/Users/hburungale/Desktop/CTMS_Val1_PIR_new.docx"
+    output_path = "CTMS_Val1_PIR_new.docx"
     document.save(output_path)
     print(f"\nUpdated Word file saved to: {output_path}")
 
 if __name__ == "__main__":
     # Specify the path to the Word file
-    word_file_path = "./word.docx"
+    word_file_path = "CTMS_Val1_PIR_new.docx"
 
     # Specify the replacements as a dictionary
     replacements = {
