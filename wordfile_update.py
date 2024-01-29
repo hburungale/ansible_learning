@@ -1,5 +1,14 @@
 from docx import Document
 import os
+import os
+
+file_path = os.path.abspath('./CTMS_Val1_PIR.docx')
+
+if os.access(file_path, os.R_OK):
+    print(f"Your Python code has read permission for the file at {file_path}.")
+else:
+    print(f"Your Python code does not have read permission for the file at {file_path}.")
+
 
 def replace_and_print_word_file_content(file_path, replacements):
     document = Document(file_path)
