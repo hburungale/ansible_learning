@@ -1,4 +1,5 @@
 from docx import Document
+import os
 
 def replace_and_print_word_file_content(file_path, replacements):
     document = Document(file_path)
@@ -23,13 +24,14 @@ def replace_and_print_word_file_content(file_path, replacements):
                 print(cell.text)
 
     # Save the updated Word document
-    output_path = "./CTMS_Val1_PIR_new1.docx"
+    output_path = file_path
     document.save(output_path)
     print(f"\nUpdated Word file saved to: {output_path}")
 
 if __name__ == "__main__":
     # Specify the path to the Word file
-    word_file_path = "./CTMS_Val1_PIR_new.docx"
+    file_path = os.path.abspath('./CTMS_Val1_PIR_new.docx')
+    word_file_path = file_path
 
     # Specify the replacements as a dictionary
     replacements = {
