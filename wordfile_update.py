@@ -23,7 +23,7 @@ def replace_and_print_word_file_content(file_path, replacements):
                 print(cell.text)
 
     # Save the updated Word document
-    output_path = "CTMS_Val1_PIR_new.docx"
+    output_path = "CTMS_Val1_PIR_new1.docx"
     document.save(output_path)
     print(f"\nUpdated Word file saved to: {output_path}")
 
