@@ -2,12 +2,12 @@ from docx import Document
 import os
 import os
 
-file_path = os.path.abspath('./CTMS_Val1_PIR.docx')
+# file_path = os.path.abspath('./CTMS_Val1_PIR.docx')
 
-if os.access(file_path, os.R_OK):
-    print(f"Your Python code has read permission for the file at {file_path}.")
-else:
-    print(f"Your Python code does not have read permission for the file at {file_path}.")
+# if os.access(file_path, os.R_OK):
+#     print(f"Your Python code has read permission for the file at {file_path}.")
+# else:
+#     print(f"Your Python code does not have read permission for the file at {file_path}.")
 
 
 def replace_and_print_word_file_content(file_path, replacements):
@@ -39,7 +39,7 @@ def replace_and_print_word_file_content(file_path, replacements):
 
 if __name__ == "__main__":
     # Specify the path to the Word file
-    file_path = os.path.abspath('./CTMS_Val1_PIR.docx')
+    file_path = "CTMS_Val1_PIR).docx"
     word_file_path = file_path
 
     # Specify the replacements as a dictionary
