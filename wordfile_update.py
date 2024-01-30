@@ -45,9 +45,19 @@ def replace_and_print_word_file_content(file_path, replacements):
 if __name__ == "__main__":
     # Specify the path to the Word file
     script_directory = os.path.dirname(os.path.abspath(__file__))
+    print(script_directory)
     file_path = os.path.join(script_directory, "./app_codes/CTMS_Val1_PIR.docx")
+    print(file_path)
+    file_path1= "./app_codes/CTMS_Val1_PIR.docx"
+    print(file_path1)
+    file_path2 = os.path.join(script_directory, "/app_codes/CTMS_Val1_PIR.docx")
+    print(file_path2)
+
+
+
+
     
-    word_file_path = file_path
+    word_file_path = file_path2
 
     # Specify the replacements as a dictionary
     replacements = {
