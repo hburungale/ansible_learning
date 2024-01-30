@@ -44,31 +44,38 @@ def replace_and_print_word_file_content(file_path, replacements):
 
 if __name__ == "__main__":
     # Specify the path to the Word file
-    script_directory = os.path.dirname(os.path.abspath(__file__))
-    print("script_directory",script_directory)
-    # file_path = os.path.join(script_directory, "./app_codes/CTMS_Val1_PIR.docx")
-    # print(file_path)
-    # file_path1= "./app_codes/CTMS_Val1_PIR.docx"
-    # print(file_path1)
-    file_path2 = os.path.join(script_directory, "\CTMS_Val1_PIR.docx")
-    print(file_path2, "new")
+#     script_directory = os.path.dirname(os.path.abspath(__file__))
+#     print("script_directory",script_directory)
+#     # file_path = os.path.join(script_directory, "./app_codes/CTMS_Val1_PIR.docx")
+#     # print(file_path)
+#     # file_path1= "./app_codes/CTMS_Val1_PIR.docx"
+#     # print(file_path1)
+#     file_path2 = os.path.join(script_directory, "\CTMS_Val1_PIR.docx")
+#     print(file_path2, "new")
     current_directory = os.getcwd()
 
 # Print the current working directory
     print("Current Working Directory:", current_directory)
+    file_name1="app_codes\CTMS_Val1_PIR.docx"
+    word_file_path1 = os.path.join(current_directory, file_name1)
+    print(word_file_path1,"word_file_path1")
+    # print("word_file_path1" : word_file_path1)
+
     script_directory = r"D:\Go\Go Agent Stg 1\pipelines\IR_automation\app_codes"
     file_name = "CTMS_Val1_PIR.docx"
     word_file_path = os.path.join(script_directory, file_name)
     print("Full Path to Word File:", word_file_path)
 
-    
-    
-
-
 
 
     
-    word_file_path = file_path2
+    
+
+
+
+
+    
+    # word_file_path = file_path2
 
     # Specify the replacements as a dictionary
     replacements = {
