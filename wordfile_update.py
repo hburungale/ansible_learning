@@ -1,28 +1,18 @@
 from docx import Document
 import os
-import os
-
-# file_path = os.path.abspath('./CTMS_Val1_PIR.docx')
-
-# if os.access(file_path, os.R_OK):
-#     print(f"Your Python code has read permission for the file at {file_path}.")
-# else:
-#     print(f"Your Python code does not have read permission for the file at {file_path}.")
 
 
 def replace_and_print_word_file_content(file_path, replacements):
-    
-    print(file_path)
 
     document = Document(file_path)
     for paragraph in document.paragraphs:
         print(paragraph.text)
 
-    print("Before Replacement:")
-    for table in document.tables:
-        for row in table.rows:
-            for cell in row.cells:
-                print(cell.text)
+    # print("Before Replacement:")
+    # for table in document.tables:
+    #     for row in table.rows:
+    #         for cell in row.cells:
+    #             print(cell.text)
 
     # Replace target words with replacement words
     for table in document.tables:
@@ -31,11 +21,11 @@ def replace_and_print_word_file_content(file_path, replacements):
                 for target_word, replacement_word in replacements.items():
                     cell.text = cell.text.replace(target_word, replacement_word)
 
-    print("\nAfter Replacement:")
-    for table in document.tables:
-        for row in table.rows:
-            for cell in row.cells:
-                print(cell.text)
+    # print("\nAfter Replacement:")
+    # for table in document.tables:
+    #     for row in table.rows:
+    #         for cell in row.cells:
+    #             print(cell.text)
 
     # Save the updated Word document
     output_path = "newfile.docx"
@@ -65,6 +55,8 @@ if __name__ == "__main__":
     # file_name = "CTMS_Val1_PIR.docx"
     # word_file_path = os.path.join(script_directory, file_name)
     # print("Full Path to Word File:", word_file_path)
+    word_file_path = "/Users/hburungale/Desktop/Hrithik/IR_automation/ansible_learning/CTMS_Val3_HDC PIR.docx"
+    
 
 
 
@@ -81,6 +73,13 @@ if __name__ == "__main__":
     replacements = {
         "Product_Name": "CTMS",
         "Product_Version": "2202",
+        "Environment_URL": "ctms.net",
+        "Git_Branch": "123456",
+        "Deploy_By": "HB",
+        "Deploy_Date":"23 jan"
+
+
+
         
     }
 
