@@ -56,6 +56,12 @@ if __name__ == "__main__":
 
 # Print the current working directory
     print("Current Working Directory:", current_directory)
+    script_directory = r"D:\Go\Go Agent Stg 1\pipelines\IR_automation\app_codes"
+    file_name = "CTMS_Val1_PIR.docx"
+    word_file_path = os.path.join(script_directory, file_name)
+    print("Full Path to Word File:", word_file_path)
+
+    
     
 
 
