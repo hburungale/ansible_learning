@@ -11,7 +11,11 @@ import os
 
 
 def replace_and_print_word_file_content(file_path, replacements):
+    print(file_path)
+
     document = Document(file_path)
+    for paragraph in document.paragraphs:
+        print(paragraph.text)
 
     print("Before Replacement:")
     for table in document.tables:
@@ -33,20 +37,20 @@ def replace_and_print_word_file_content(file_path, replacements):
                 print(cell.text)
 
     # Save the updated Word document
-    output_path = file_path
+    output_path = "newfile.docx"
     document.save(output_path)
     print(f"\nUpdated Word file saved to: {output_path}")
 
 if __name__ == "__main__":
     # Specify the path to the Word file
-    file_path = "CTMS_Val1_PIR).docx"
+    file_path = "CTMS_Val1_PIR.docx"
     word_file_path = file_path
 
     # Specify the replacements as a dictionary
     replacements = {
-        "Product_Name": "1",
-        "Product_Version": "2",
-        # Add more key-value pairs as needed
+        "Product_Name": "CTMS",
+        "Product_Version": "2202",
+        
     }
 
     # Call the function to replace and print the content
