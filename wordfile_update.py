@@ -43,7 +43,7 @@ def replace_and_print_word_file_content(file_path, replacements):
 
 if __name__ == "__main__":
     # Specify the path to the Word file
-    file_path = "CTMS_Val1_PIR.docx"
+    file_path = os.path.abspath('./CTMS_Val1_PIR.docx')
     word_file_path = file_path
 
     # Specify the replacements as a dictionary
