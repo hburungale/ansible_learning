@@ -52,6 +52,8 @@ if __name__ == "__main__":
     # print(file_path1)
     file_path2 = os.path.join(script_directory, "/CTMS_Val1_PIR.docx")
     print(file_path2)
+    file_pathe = os.path.abspath('./CTMS_Val1_PIR.docx')
+    print(file_pathe)
 
 
 
