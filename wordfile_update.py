@@ -8,11 +8,11 @@ def replace_and_print_word_file_content(file_path, replacements):
     for paragraph in document.paragraphs:
         print(paragraph.text)
 
-    # print("Before Replacement:")
-    # for table in document.tables:
-    #     for row in table.rows:
-    #         for cell in row.cells:
-    #             print(cell.text)
+    print("Before Replacement:")
+    for table in document.tables:
+        for row in table.rows:
+            for cell in row.cells:
+                print(cell.text)
 
     # Replace target words with replacement words
     for table in document.tables:
@@ -21,11 +21,11 @@ def replace_and_print_word_file_content(file_path, replacements):
                 for target_word, replacement_word in replacements.items():
                     cell.text = cell.text.replace(target_word, replacement_word)
 
-    # print("\nAfter Replacement:")
-    # for table in document.tables:
-    #     for row in table.rows:
-    #         for cell in row.cells:
-    #             print(cell.text)
+    print("\nAfter Replacement:")
+    for table in document.tables:
+        for row in table.rows:
+            for cell in row.cells:
+                print(cell.text)
 
     # Save the updated Word document
     output_path = "newfile.docx"
