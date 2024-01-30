@@ -56,15 +56,15 @@ if __name__ == "__main__":
 
 # Print the current working directory
     print("Current Working Directory:", current_directory)
-    file_name1="app_codes\CTMS_Val1_PIR.docx"
-    word_file_path1 = os.path.join(current_directory, file_name1)
-    print(word_file_path1,"word_file_path1")
+    file_name="app_codes\CTMS_Val1_PIR.docx"
+    word_file_path = os.path.join(current_directory, file_name)
+    print("word_file_path:" , word_file_path)
     # print("word_file_path1" : word_file_path1)
 
-    script_directory = r"D:\Go\Go Agent Stg 1\pipelines\IR_automation\app_codes"
-    file_name = "CTMS_Val1_PIR.docx"
-    word_file_path = os.path.join(script_directory, file_name)
-    print("Full Path to Word File:", word_file_path)
+    # script_directory = r"D:\Go\Go Agent Stg 1\pipelines\IR_automation\app_codes"
+    # file_name = "CTMS_Val1_PIR.docx"
+    # word_file_path = os.path.join(script_directory, file_name)
+    # print("Full Path to Word File:", word_file_path)
 
 
 
