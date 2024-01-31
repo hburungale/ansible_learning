@@ -21,11 +21,11 @@ def replace_and_print_word_file_content(file_path, replacements):
                 for target_word, replacement_word in replacements.items():
                     cell.text = cell.text.replace(target_word, replacement_word)
 
-    # print("\nAfter Replacement:")
-    # for table in document.tables:
-    #     for row in table.rows:
-    #         for cell in row.cells:
-    #             print(cell.text)
+    print("\nAfter Replacement:")
+    for table in document.tables:
+        for row in table.rows:
+            for cell in row.cells:
+                print(cell.text)
 
     # Save the updated Word document
     output_path = "newfile.docx"
@@ -39,8 +39,6 @@ if __name__ == "__main__":
     file_name="app_codes\CTMS_Val1_PIR.docx"
     word_file_path = os.path.join(current_directory, file_name)
     print("word_file_path:" , word_file_path)
-    word_file_path = "/Users/hburungale/Desktop/Hrithik/IR_automation/ansible_learning/CTMS_Val3_HDC PIR.docx"
-    
     replacements = {
         "Product_Name": "CTMS",
         "Product_Version": "2202",
