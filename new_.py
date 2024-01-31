@@ -27,7 +27,7 @@ if __name__ == "__main__":
    
     current_directory = os.getcwd()
     print("Current Working Directory:", current_directory)
-    file_name="app_codes\CTMS_Val1_PIR.docx"
+    file_name="app_codes\CTMS_Val3_HDC PIR.docx"
     word_file_path = os.path.join(current_directory, file_name)
     print("word_file_path:" , word_file_path)
     replacements = {
