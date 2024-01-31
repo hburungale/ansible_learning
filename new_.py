@@ -52,3 +52,4 @@ if __name__ == "__main__":
 
     # Call the function to replace and print the content
     replace_and_print_word_file_content(word_file_path, replacements)
+
