@@ -44,8 +44,8 @@ def convert_docx_table_to_pdf(docx_path, pdf_path):
     pdf.build([pdf_table])
 
 # Example usage
-docx_file = "CTMS_Val3_HDC_PIR.docx"  # Replace with your DOCX file
-pdf_file = "PIR.pdf"     # Replace with the desired PDF output file
+docx_file = "updated.docx"  # Replace with your DOCX file
+pdf_file = "CTMS_Val3_HDC_PIR.pdf"     # Replace with the desired PDF output file
 
 convert_docx_table_to_pdf(docx_file, pdf_file)
 
