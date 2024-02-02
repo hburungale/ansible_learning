@@ -37,7 +37,7 @@ def replace_and_print_word_file_content(file_path, replacements):
 
 if __name__ == "__main__":
     # current_directory = os.getcwd()
-    file_name = "/Users/hburungale/Desktop/Hrithik/IR_automation/ansible_learning/CTMS_Val3_HDC PIR.docx"
+    file_name = "/Users/hburungale/Desktop/Hrithik/IR_automation/ansible_learning/CTMS_Val3_HDC_PIR.docx"
     # word_file_path = os.path.join(current_directory, file_name)
 
     # Specify the replacements as a dictionary
