@@ -26,6 +26,7 @@ def replace_and_print_word_file_content(file_path, replacements):
 if __name__ == "__main__":
    
     current_directory = os.getcwd()
+    
     print("Current Working Directory:", current_directory)
     file_name="app_codes\CTMS_Val3_HDC_PIR.docx"
     word_file_path = os.path.join(current_directory, file_name)
