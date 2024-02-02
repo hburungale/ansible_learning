@@ -7,6 +7,7 @@ def upload_attachment():
     url = f"https://jira.mdsol.com/rest/api/2/issue/{ticket_id}/attachments"
     script_directory = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(script_directory, "../reports/IR.pdf")#check
+    file_path = os.path.join(script_directory, "../reports/CTMS_Val3_HDC_PIR.pdf")
     headers = {
     'X-Atlassian-Token': 'nocheck',
     'Authorization': f'Bearer {access_token}'
