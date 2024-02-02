@@ -5,6 +5,11 @@ import os
 def replace_and_print_word_file_content(file_path, replacements):
 
     document = Document(file_path)
+    print("\nBefore Replacement:")
+    for table in document.tables:
+        for row in table.rows:
+            for cell in row.cells:
+                print(cell.text)
 
     for table in document.tables:
         for row in table.rows:
