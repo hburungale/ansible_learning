@@ -12,7 +12,7 @@ def get_json_data():
 
     payload = {}
     headers = {
-        'Access-Token': os.environ.get('cyclops'),
+        'Access-Token': '',
         'Content-Type': 'application/json'
     }
 

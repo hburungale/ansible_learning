@@ -1,6 +1,6 @@
 from docx import Document
 import os
-import cyclops
+# import cyclops
 
 
 def replace_and_print_word_file_content(file_path, replacements):
