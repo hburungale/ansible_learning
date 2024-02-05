@@ -1,21 +1,15 @@
 from docx import Document
 import os
-import cyclops
-
+from FetchCyclopsData import get_json_data
 
 def replace_and_print_word_file_content(file_path, replacements):
-
+    print("Before Replacement:")
+    for table in document.tables:
+        for row in table.rows:
+            for cell in row.cells:
+                print(cell.text)
+                
     document = Document(file_path)
-    # for paragraph in document.paragraphs:
-    #     print(paragraph.text)
-
-    # print("Before Replacement:")
-    # for table in document.tables:
-    #     for row in table.rows:
-    #         for cell in row.cells:
-    #             print(cell.text)
-
-    # Replace target words with replacement words
     for table in document.tables:
         for row in table.rows:
             for cell in row.cells:
@@ -29,27 +23,27 @@ def replace_and_print_word_file_content(file_path, replacements):
                 print(cell.text)
 
     # Save the updated Word document
-    output_path = "Final_PIR.docx"
+    output_path = "PIR.docx"
     document.save(output_path)
     print(f"\nUpdated Word file saved to: {output_path}")
 
 if __name__ == "__main__":
-   
+    json_data = get_json_data()
     current_directory = os.getcwd()
     print("Current Working Directory:", current_directory)
-    file_name="app_codes\CTMS_Val1_PIR.docx"
+    file_name="CTMS_PIR.docx"
     word_file_path = os.path.join(current_directory, file_name)
     print("word_file_path:" , word_file_path)
-    word_file_path = "/Users/hburungale/Desktop/Hrithik/IR_automation/ansible_learning/CTMS_PIR_copy.docx"
+ 
 
     replacements = {
-        "Product_Name": "CTMS",
-        "Product_Version": "2202",
-        "Environment_URL": "ctms.net",
-        "Git_Branch": "123456",
-        "Deploy_By": "hburungale",
-        "Deploy_Date":"04-01-2024"
+        "Product_Version": json_data["global"]["CTMS_VERSION"],
+        "Environment_URL": os.environ.get('Environment_URL') ,
+        "Git_Branch": json_data["global"]["GIT_BRANCH"],
+        "Deploy_By": json_data["global"]["deploy_by"],
+        "Deploy_Date":"Feb5"
     }
+    
 
     # Call the function to replace and print the content
     replace_and_print_word_file_content(word_file_path, replacements)

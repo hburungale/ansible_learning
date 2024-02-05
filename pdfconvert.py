@@ -30,8 +30,8 @@ def convert_docx_table_to_pdf(docx_path, pdf_path):
     style = TableStyle([
     ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
     ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-    ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-    # ('LEFTPADDING', (1, 0), (-1, -1), 200),  # Adjust the value as needed
+    # ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+    # ('LEFTPADDING', (1, 0), (-1, -1), 100),  # Adjust the value as needed
     ('RIGHTPADDING', (0, 0), (-1, -1), -200),
 ])
 
@@ -44,8 +44,8 @@ def convert_docx_table_to_pdf(docx_path, pdf_path):
     pdf.build([pdf_table])
 
 # Example usage
-docx_file = "updated.docx"  # Replace with your DOCX file
-pdf_file = "CTMS_Val3_HDC_PIR.pdf"     # Replace with the desired PDF output file
+docx_file = "Final_PIR.docx"  # Replace with your DOCX file
+pdf_file = "PIR2.pdf"     # Replace with the desired PDF output file
 
 convert_docx_table_to_pdf(docx_file, pdf_file)
 
