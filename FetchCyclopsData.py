@@ -4,10 +4,10 @@ import boto3
 import os
 
 def get_json_data():
-    token_name = "gocd_stage_token"
-    ssm = boto3.client('ssm', region_name='us-east-1')
-    parameter = ssm.get_parameter(Name=token_name)
-    BEARER_TOKEN = parameter['Parameter']['Value']
+    # token_name = "gocd_stage_token"
+    # ssm = boto3.client('ssm', region_name='us-east-1')
+    # parameter = ssm.get_parameter(Name=token_name)
+    # BEARER_TOKEN = parameter['Parameter']['Value']
     url = "https://cyclopsui-sandbox.imedidata.net/api/v0/url-configurations/CTMS/CTMS_DIstro/test_url.net"
 
     payload = {}
