@@ -1,4 +1,5 @@
 from docx import Document
+import os
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 from reportlab.lib import colors
@@ -28,7 +29,10 @@ def count_tables(docx_path):
     table_count = 0
 
     # Create a PDF file
-    pdf = SimpleDocTemplate("Distro_PIR.pdf", pagesize=letter)
+    pdfname=os.environ.get('CTMS_URL')
+    pdffilename = f"{pdfname}_PIR.pdf"
+    pdf = SimpleDocTemplate(pdffilename, pagesize=letter)
+    # pdf = SimpleDocTemplate("Distro_PIR.pdf", pagesize=letter)
 
     pdf_tables = []
 
@@ -57,7 +61,7 @@ def count_tables(docx_path):
     # return table_count
 
 # Replace 'your_file.docx' with the path to your DOCX file
-docx_file_path = 'Distro_PIR.docx'
+docx_file_path = 'PIR.docx'
 tables_count = count_tables(docx_file_path)
 
 # print(f'The number of tables in the DOCX file is: {tables_count}')

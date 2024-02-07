@@ -25,7 +25,7 @@ def replace_and_print_word_file_content(file_path, replacements):
                 print(cell.text)
 
     # Save the updated Word document
-    output_path = "Distro_PIR.docx"
+    output_path = "PIR.docx"
     document.save(output_path)
     print(f"\nUpdated Word file saved to: {output_path}")
 
@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     replacements = {
         "Product_Version": json_data["global"]["CTMS_VERSION"],
-        "Environment_URL": os.environ.get('Environment_URL') ,
+        "Environment_URL": os.environ.get('CTMS_URL') ,
         "Git_Branch": json_data["global"]["GIT_BRANCH"],
         "Deploy_By": json_data["global"]["deploy_by"],
         "Deploy_Date":deploy_date

@@ -4,15 +4,23 @@ import boto3
 import os
 
 def get_json_data():
-    # token_name = "gocd_stage_token"
-    # ssm = boto3.client('ssm', region_name='us-east-1')
-    # parameter = ssm.get_parameter(Name=token_name)
-    # BEARER_TOKEN = parameter['Parameter']['Value']
-    url = "https://cyclopsui-sandbox.imedidata.net/api/v0/url-configurations/CTMS/CTMS_DIstro/test_url.net"
+
+    cyclops_template = os.environ.get('TEMPLATE')
+    CTMS_URL = os.environ.get('CTMS_URL')
+    S3 =os.environ.get('S3')
+
+    if S3 == "red":
+     cyclops_url = "https://cyclopsui.imedidata.com/"
+    else:
+      cyclops_url = "https://cyclopsui-sandbox.imedidata.net"
+    
+
+    # url = "https://cyclopsui-sandbox.imedidata.net/api/v0/url-configurations/CTMS/CTMS_DIstro/test_url.net"
+    url = f"{cyclops_url}/api/v0/url-configurations/CTMS/{cyclops_template}/{CTMS_URL}"
 
     payload = {}
     headers = {
-        'Access-Token': os.environ.get('cyclops'),
+        'Access-Token': os.environ.get('cyclops'), #stored in secure variables
         'Content-Type': 'application/json'
     }
 
