@@ -1,17 +1,21 @@
 import requests
 import os
 import shutil
+from FetchCyclopsData import get_json_data
 
 def upload_attachment():
+    json_data = get_json_data()
+    Git_Branch = json_data["global"]["GIT_BRANCH"]
+    print(Git_Branch)
     access_token = os.environ.get('Access_Token')
     ticket_id = os.environ.get('Jira_Ticket_Id')
     pdfname=os.environ.get('CTMS_URL')
-    pdffilename = f"{pdfname}_PIR.pdf" 
+    pirfilename = f"{pdfname}_PIR.pdf"
+    irfilename = f"{pdfname}_PIR.pdf" 
     url = f"https://jira.mdsol.com/rest/api/2/issue/{ticket_id}/attachments"
     script_directory = os.path.dirname(os.path.abspath(__file__))
-    # file_path = os.path.join(script_directory, "../reports/IR.pdf")#check
-    # file_path = os.path.join(script_directory, "../reports/Distro_PIR.pdf")
-    file_path = os.path.join(script_directory, f"./reports/{pdffilename}")
+    file_path = os.path.join(script_directory, f"./reports/{irfilename}")
+    file_path = os.path.join(script_directory, f"./reports/{pirfilename}")
 
     headers = {
     'X-Atlassian-Token': 'nocheck',
