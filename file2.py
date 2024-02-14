@@ -63,5 +63,5 @@ def count_tables(docx_path):
 # Replace 'your_file.docx' with the path to your DOCX file
 docx_file_path = 'PIR.docx'
 tables_count = count_tables(docx_file_path)
-
+# 
 # print(f'The number of tables in the DOCX file is: {tables_count}')
