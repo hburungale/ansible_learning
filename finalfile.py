@@ -126,7 +126,7 @@ def count_tables(docx_path):
 def copyfile():
     url=os.environ.get('CTMS_URL')
     pirfilename = f"{url}_PIR.pdf" 
-    destination_folder = "./reports/"
+    destination_folder = "./Reports/"
     destination_path = os.path.join(destination_folder, pirfilename)
     shutil.copy(pirfilename, destination_path)
 
