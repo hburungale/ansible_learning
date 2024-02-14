@@ -126,7 +126,7 @@ def count_tables(docx_path):
 def copyfile():
     url=os.environ.get('CTMS_URL')
     pirfilename = f"{url}_PIR.pdf" 
-    destination_folder = "./Reports/"
+    destination_folder = "./reports/"
     destination_path = os.path.join(destination_folder, pirfilename)
     shutil.copy(pirfilename, destination_path)
 
@@ -142,8 +142,8 @@ def upload_attachment():
     # irfilename = f"{url}_{Git_Branch}.pdf" 
     url = f"https://jira.mdsol.com/rest/api/2/issue/{ticket_id}/attachments"
     script_directory = os.path.dirname(os.path.abspath(__file__))
-    # file_path = os.path.join(script_directory, f"./Reports/{irfilename}")
-    file_path = os.path.join(script_directory, f"./Reports/{pirfilename}")
+    # file_path = os.path.join(script_directory, f"./reports/{irfilename}")
+    file_path = os.path.join(script_directory, f"./reports/{pirfilename}")
 
     headers = {
     'X-Atlassian-Token': 'nocheck',
