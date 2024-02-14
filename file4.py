@@ -11,7 +11,7 @@ def upload_attachment():
     script_directory = os.path.dirname(os.path.abspath(__file__))
     # file_path = os.path.join(script_directory, "../reports/IR.pdf")#check
     # file_path = os.path.join(script_directory, "../reports/Distro_PIR.pdf")
-    file_path = os.path.join(script_directory, f"../reports/{pdffilename}")
+    file_path = os.path.join(script_directory, f"./reports/{pdffilename}")
 
     headers = {
     'X-Atlassian-Token': 'nocheck',
