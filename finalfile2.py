@@ -9,15 +9,12 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 from reportlab.lib import colors
 
 #Global variables
-cyclops_template = os.environ.get('TEMPLATE')
 CTMS_URL = os.environ.get('CTMS_URL')
-S3 =os.environ.get('S3')
 
 #            *** To fetch the data form cyclops ***
 def get_json_data():
-    # cyclops_template = os.environ.get('TEMPLATE')
-    # CTMS_URL = os.environ.get('CTMS_URL')
-    # S3 =os.environ.get('S3')
+    cyclops_template = os.environ.get('TEMPLATE')
+    S3 =os.environ.get('S3')
     if S3 == "red":
      cyclops_url = "https://cyclopsui.imedidata.com/"
     else:
@@ -39,13 +36,9 @@ def get_json_data():
 #             *** To update the PIR file ***
 def replace_word_file_content():
     json_data = get_json_data()
-    current_directory = os.getcwd()
-    now = datetime.now()
-    deploy_date= now.strftime("%d-%m-%Y")
-    print("Current Working Directory:", current_directory)
-    file_name="CTMS_PIR.docx" #add in env variables 
-    word_file_path = os.path.join(current_directory, file_name)
-    print("word_file_path:" , word_file_path)
+    deploy_time = datetime.now()
+    deploy_date= deploy_time.strftime("%d-%m-%Y")
+    file_name= os.environ.get('PIR_template') 
     replacements = {
         "Product_Version": json_data["global"]["CTMS_VERSION"],
         "Environment_URL": os.environ.get('CTMS_URL') ,
@@ -54,34 +47,23 @@ def replace_word_file_content():
         "Deploy_Date":deploy_date
     }
     document = Document(file_name)
-    # print("Before Replacement:")
-    # for table in document.tables:
-    #     for row in table.rows:
-    #         for cell in row.cells:
-    #             print(cell.text)
-                
-    # try to optimize this
     for table in document.tables:
         for row in table.rows:
             for cell in row.cells:
                 for target_word, replacement_word in replacements.items():
                     cell.text = cell.text.replace(target_word, replacement_word)
 
-    print("\nAfter Replacement:")
-    for table in document.tables:
-        for row in table.rows:
-            for cell in row.cells:
-                print(cell.text)
+    # print("\nAfter Replacement:")
+    # for table in document.tables:
+    #     for row in table.rows:
+    #         for cell in row.cells:
+    #             print(cell.text)
 
     # Save the updated Word document
     output_path = "PIR.docx"
     document.save(output_path)
     print(f"\nUpdated Word file saved to: {output_path}")
     pdfconverter(output_path)
-
-
-
-
 
 #             *** To convert the PIR word into pdf format ***
 def apply_styles(pdf_table, table_index):
@@ -108,8 +90,8 @@ def pdfconverter(docx_path):
     doc = Document(docx_path)
     table_count = 0
     # To create PDF file
-    # pdfname=os.environ.get('CTMS_URL')
     pdffilename = f"{CTMS_URL}_PIR.pdf"
+    #to create a pdf template by passing the name and size of the file.
     pdf = SimpleDocTemplate(pdffilename, pagesize=letter) #find 
     pdf_tables = []
     for table_index, table in enumerate(doc.tables):
