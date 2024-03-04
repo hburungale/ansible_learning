@@ -44,7 +44,7 @@ def replace_word_file_content():
     word_file_path = os.path.join(current_directory, file_name)
     print("word_file_path:" , word_file_path)
     replacements = {
-        "Product_Version": json_data["global"]["CTMS_VERSION"],
+        # "Product_Version": json_data["global"]["CTMS_VERSION"],
         "Environment_URL": os.environ.get('CTMS_URL') ,
         "Git_Branch": json_data["global"]["GIT_BRANCH"],
         "Deploy_By": json_data["global"]["deploy_by"],
