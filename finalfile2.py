@@ -51,13 +51,6 @@ def replace_word_file_content():
         "Deploy_Date":deploy_date
     }
     document = Document(file_name)
-    print("Before Replacement:")
-    for table in document.tables:
-        for row in table.rows:
-            for cell in row.cells:
-                print(cell.text)
-                
-    
     for table in document.tables:
         for row in table.rows:
             for cell in row.cells:
@@ -122,6 +115,8 @@ def pdfconvertor(docx_path):
         pdf_tables.append(pdf_table)
     # Build the PDF file with all tables
     pdf.build(pdf_tables)
+    copyfile()
+    
 
 
 #    *** To copy PIR.pdf to the reports directory ***
@@ -160,6 +155,6 @@ def upload_attachment():
 
 #execution starts from here
 replace_word_file_content()                     # 1. To call replacement function
-copyfile()                                      # 2. To copy PIR.pdf to the reports directory
+                                      
                            
 
