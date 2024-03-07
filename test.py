@@ -12,9 +12,11 @@ from reportlab.lib import colors
 
 #            *** To fetch the data form cyclops***
 def fetch_token(token_name):
+   print(token_name)
    ssm=boto3.client('ssm', region_name='us-east-1')
    parameter=ssm.get_parameter(Name=token_name, WithDecryption =True)
    AUTH_TOKEN=parameter['Parameter']['Value']
+   print(AUTH_TOKEN)
    return AUTH_TOKEN
 
 
@@ -134,7 +136,7 @@ def pdfconvertor(docx_path):
 def copyfile():
     url=os.environ.get('CTMS_URL')
     pirfilename = f"{url}_PIR.pdf" 
-    destination_folder = "../Reports/"
+    destination_folder = "./reports/"
     destination_path = os.path.join(destination_folder, pirfilename)
     shutil.copy(pirfilename, destination_path)
     upload_attachment() 
@@ -151,8 +153,8 @@ def upload_attachment():
     irfilename = f"{url}_{Git_Branch}.pdf" 
     url = f"https://jira.mdsol.com/rest/api/2/issue/{ticket_id}/attachments"
     script_directory = os.path.dirname(os.path.abspath(__file__))
-    file_path1 = os.path.join(script_directory, f"../Reports/{irfilename}")
-    file_path2 = os.path.join(script_directory, f"../Reports/{pirfilename}")
+    file_path1 = os.path.join(script_directory, f"./reports/{irfilename}")
+    file_path2 = os.path.join(script_directory, f"./reports/{pirfilename}")
     headers = {
     'X-Atlassian-Token': 'nocheck',
     'Authorization': f'Bearer {access_token}'
