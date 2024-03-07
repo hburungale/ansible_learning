@@ -1,5 +1,6 @@
 import requests
 import os
+import boto3
 import sys
 from docx import Document
 from datetime import datetime
@@ -10,6 +11,15 @@ from reportlab.lib import colors
 
 
 #            *** To fetch the data form cyclops***
+def fetch_token(token_name):
+   ssm=boto3.client('ssm', region_name='us-east-1')
+   parameter=ssm.get_parameter(Name=token_name, WithDecryption =True)
+   AUTH_TOKEN=parameter['Parameter']['Value']
+   return AUTH_TOKEN
+
+
+
+
 def get_json_data():
     cyclops_template = os.environ.get('TEMPLATE')
     CTMS_URL = os.environ.get('CTMS_URL')
@@ -21,7 +31,7 @@ def get_json_data():
     url = f"{cyclops_url}/api/v0/url-configurations/CTMS/{cyclops_template}/{CTMS_URL}"
     payload = {}
     headers = {
-        'Access-Token': os.environ.get('cyclops'), #stored in secure variables, will be adding in secrete manager after testing
+        'Access-Token': fetch_token(os.environ.get('cyclops')), #stored in secure variables, will be adding in secrete manager after testing
         'Content-Type': 'application/json'
     }
     response = requests.get(url, headers=headers, data=payload)
@@ -132,7 +142,7 @@ def copyfile():
 
 #   *** To upload IR and PIR to the jira ticket
 def upload_attachment():
-    access_token = os.environ.get('Access_Token')
+    access_token = fetch_token(os.environ.get('Access_Token'))
     ticket_id = os.environ.get('Jira_Ticket_Id')
     url=os.environ.get('CTMS_URL')
     json_data = get_json_data()
