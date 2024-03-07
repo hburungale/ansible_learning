@@ -8,8 +8,9 @@ def fetch_token(token_name):
 a= os.environ.get('cyclops')
 b=os.environ.get('Access_Token')
 print(a,b)  
-fetch_token("jira_token_devops")
-print(fetch_token("jira_token_devops"))
-print(fetch_token("/Automating/Deployments/CTMS/Cyclops/Accesstoken"))
+fetch_token(a)
+fetch_token(b)
+
+
 
 
