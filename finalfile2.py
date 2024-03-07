@@ -1,6 +1,7 @@
 import requests
 import json
 import os
+import sys
 from docx import Document
 from datetime import datetime
 import shutil
@@ -30,7 +31,7 @@ def get_json_data():
         return json_dict
     else:
         print(f"Error: {response.status_code} - {response.text}")
-        return None
+        sys.exit()
 
 
 #             *** To update the PIR file ***
