@@ -11,8 +11,12 @@ def create_header(token_name):
    return access_Token   
 
 token_name=JIRA_TOKEN_NAME
-header=create_header(token_name)
-print(header)
+a = create_header(token_name)
+if a:
+   print("available")
+else:
+   print("not ")   
+
 
 
 

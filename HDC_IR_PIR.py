@@ -1,5 +1,5 @@
 import requests
-import json
+import boto3
 import os
 import sys
 from docx import Document
@@ -9,11 +9,11 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 from reportlab.lib import colors
 
+CTMS_URL = os.environ.get('CTMS_URL')
 
-#            *** To fetch the data form cyclops ***
+#            *** To fetch the data form cyclops***
 def get_json_data():
     cyclops_template = os.environ.get('TEMPLATE')
-    CTMS_URL = os.environ.get('CTMS_URL')
     S3 =os.environ.get('S3')
     if S3 == "red":
      cyclops_url = "https://cyclopsui.imedidata.com/"
@@ -22,7 +22,7 @@ def get_json_data():
     url = f"{cyclops_url}/api/v0/url-configurations/CTMS/{cyclops_template}/{CTMS_URL}"
     payload = {}
     headers = {
-        'Access-Token': os.environ.get('cyclops'), #stored in secure variables, will be adding in secrete manager after testing
+        'Access-Token': os.environ.get('cyclops'), 
         'Content-Type': 'application/json'
     }
     response = requests.get(url, headers=headers, data=payload)
@@ -33,9 +33,8 @@ def get_json_data():
         print(f"Error: {response.status_code} - {response.text}")
         sys.exit()
 
-
 #             *** To update the PIR file ***
-def replace_word_file_content():
+def update_pir():
     json_data = get_json_data()
     current_directory = os.getcwd()
     now = datetime.now()
@@ -45,13 +44,13 @@ def replace_word_file_content():
     word_file_path = os.path.join(current_directory, file_name)
     print("word_file_path:" , word_file_path)
     replacements = {
-        # "Product_Version": json_data["global"]["CTMS_VERSION"],
+        "Product_Version": json_data["global"]["CTMS_VERSION"],
         "Environment_URL": os.environ.get('CTMS_URL') ,
         "Git_Branch": json_data["global"]["GIT_BRANCH"],
         "Deploy_By": json_data["global"]["deploy_by"],
         "Deploy_Date":deploy_date
     }
-    document = Document(file_name)
+    document = Document(word_file_path)
     for table in document.tables:
         for row in table.rows:
             for cell in row.cells:
@@ -97,8 +96,7 @@ def pdfconvertor(docx_path):
     doc = Document(docx_path)
     table_count = 0
     # To create PDF file
-    pdfname=os.environ.get('CTMS_URL')
-    pdffilename = f"{pdfname}_PIR.pdf"
+    pdffilename = f"{CTMS_URL}_PIR.pdf"
     pdf = SimpleDocTemplate(pdffilename, pagesize=letter)
     pdf_tables = []
     for table_index, table in enumerate(doc.tables):
@@ -116,15 +114,15 @@ def pdfconvertor(docx_path):
         pdf_tables.append(pdf_table)
     # Build the PDF file with all tables
     pdf.build(pdf_tables)
-    copyfile()
+    copyfile() 
+    
     
 
 
 #    *** To copy PIR.pdf to the reports directory ***
 def copyfile():
-    url=os.environ.get('CTMS_URL')
-    pirfilename = f"{url}_PIR.pdf" 
-    destination_folder = "./reports/"
+    pirfilename = f"{CTMS_URL}_PIR.pdf" 
+    destination_folder = "../Reports/"
     destination_path = os.path.join(destination_folder, pirfilename)
     shutil.copy(pirfilename, destination_path)
     upload_attachment() 
@@ -134,28 +132,36 @@ def copyfile():
 def upload_attachment():
     access_token = os.environ.get('Access_Token')
     ticket_id = os.environ.get('Jira_Ticket_Id')
-    url=os.environ.get('CTMS_URL')
     json_data = get_json_data()
     Git_Branch = json_data["global"]["GIT_BRANCH"]
-    pirfilename = f"{url}_PIR.pdf"
-    # irfilename = f"{url}_{Git_Branch}.pdf" 
+    pirfilename = f"{CTMS_URL}_PIR.pdf"
+    irfilename = f"{CTMS_URL}_{Git_Branch}.pdf" 
     url = f"https://jira.mdsol.com/rest/api/2/issue/{ticket_id}/attachments"
     script_directory = os.path.dirname(os.path.abspath(__file__))
-    # file_path = os.path.join(script_directory, f"./reports/{irfilename}")
-    file_path = os.path.join(script_directory, f"./reports/{pirfilename}")
-
+    file_path1 = os.path.join(script_directory, f"../Reports/{irfilename}")
+    file_path2 = os.path.join(script_directory, f"../Reports/{pirfilename}")
     headers = {
     'X-Atlassian-Token': 'nocheck',
     'Authorization': f'Bearer {access_token}'
     }
-    files = {"file": open(file_path, "rb")}
+    files = {"file": open(file_path1, "rb")}
     response = requests.post(url, headers=headers, files=files)
-    print(response.status_code)
-    print(response.text)
+    files = {"file": open(file_path2, "rb")}
+    response = requests.post(url, headers=headers, files=files)
+    if response.status_code == 200:
+     print("IR and PIR files attached successfully to the jira ticket")
+    else:
+        print("IR and PIR files are not uploaded to jira ticket") 
 
 
 #execution starts from here
-replace_word_file_content()                     # 1. To call replacement function
+update_pir()
+                 
+
+ 
+
+   
+
                                       
                            
 
