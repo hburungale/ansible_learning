@@ -6,4 +6,4 @@ if( a == 20):
     print("same")
 else:
     print(" exiting")
-    sys.exit()   
+    sys.exit(1)   
